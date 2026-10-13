@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryNavLinks from "./CategoryNavLinks";
+import PriceDown from "./PriceDown";
 
 const HomeSection = () => {
   return (
@@ -24,6 +25,7 @@ const HomeSection = () => {
         </div>
       </section>
       <CategoryNavLinks/>
+      <PriceDown/>
     </div>
   );
 };
