@@ -46,7 +46,9 @@ const Header = async () => {
               >
                 <Link className='text-[#45556c] font-semibold text-[16px] hover:text-[#4f39f6] cursor-pointer ml-10' href={`/`}>Home</Link>
                 {data.map((link) => (
-                  <NavLinks key={link._id} link={link} />
+
+                    <NavLinks key={link._id} link={link} />
+
                 ))}
               </ul>
             </div>
@@ -76,7 +78,9 @@ const Header = async () => {
             <ul className="menu menu-horizontal px-1 ml-16">
               <Link className='text-[#45556c] font-semibold text-[16px] hover:text-[#4f39f6] cursor-pointer' href={`/`}>Home</Link>
               {data.map((link) => (
-                <NavLinks key={link._id} link={link} />
+
+                  <NavLinks key={link._id}  link={link} />
+
               ))}
             </ul>
           </div>

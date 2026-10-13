@@ -14,7 +14,6 @@ const CategoryNavLinks = () => {
       .then((data) => setNavLinks(data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(navLinks);
   return (
     <section className="max-w-6xl mx-auto px-6 pb-8">
       <div className="flex flex-wrap gap-2 justify-center list-none">
