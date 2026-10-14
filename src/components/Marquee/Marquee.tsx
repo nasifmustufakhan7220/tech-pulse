@@ -1,5 +1,6 @@
 
 import { IProducts } from "@/Types/Tech.types";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
@@ -18,7 +19,8 @@ const Marquee = async () => {
     <div className="border border-[#e2e8f0] px-3 py-2.5">
       <MarqueeText direction="right" pauseOnHover={true} className="cursor-pointer">
         {data.map((mar) => (
-          <div
+          <Link href={`/products/${mar.slug}`} key={mar._id}>
+            <div
             key={mar._id}
             className="mx-1 inline-flex items-center gap-2 whitespace-nowrap"
           >
@@ -51,6 +53,7 @@ const Marquee = async () => {
 
             
           </div>
+          </Link>
         ))}
       </MarqueeText>
     </div>
