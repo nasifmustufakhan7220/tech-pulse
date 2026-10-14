@@ -1,4 +1,3 @@
-
 const SkeletonBox = ({
   className = "",
 }: {
