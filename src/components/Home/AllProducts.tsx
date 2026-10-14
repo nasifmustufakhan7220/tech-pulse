@@ -1,6 +1,8 @@
+"use client"
 import { IProducts } from "@/Types/Tech.types";
 import ProductCard from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductsSkeleton";
+import { useEffect, useState } from "react";
 
 const AllProducts = ({
   products,
@@ -9,6 +11,28 @@ const AllProducts = ({
   products: IProducts[];
   isLoading: boolean;
 }) => {
+  const [search, setSearch] = useState("");
+
+  const product = products.filter(p=>{
+    if(search.trim().length < 0){
+      return products;
+    }
+
+    const filterProducts = p.category.toLowerCase().includes(search.toLowerCase());
+    return filterProducts;
+  })
+
+  // const [items, setItems] = useState<IProducts[]>([]);
+  // useEffect(()=>{
+  //    const product = products.filter(p=> {
+  //     if(!search.trim()) return p;
+
+  //     const filterProducts = p.name.toLowerCase().includes(search.toLowerCase());
+  //     return filterProducts;
+  //   });
+  //   setItems(product);
+
+  // },[search,products]);
   return (
     <div>
       <section className="max-w-6xl mx-auto px-6 pb-12 mt-10 ">
@@ -27,6 +51,8 @@ const AllProducts = ({
             </span>
             <input
               placeholder="Search products..."
+              value={search}
+              onChange={(e)=>setSearch(e.target.value)}
               className="w-full bg-white border border-slate-300 rounded-lg pl-9 pr-8 py-2 text-sm text-slate-800 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all placeholder:text-slate-400 shadow-xs"
               type="text"
             />
@@ -40,9 +66,12 @@ const AllProducts = ({
               ))
             :
             // need to add a consition if no data is load
-             products.map((card) => (
+             product.map((card) => (
                 <ProductCard key={card._id} card={card} />
               ))}
+             {/* items.map((card) => (
+                <ProductCard key={card._id} card={card} />
+              ))} */}
         </div>
       </section>
     </div>
