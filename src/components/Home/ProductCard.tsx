@@ -1,5 +1,6 @@
 import { IProducts } from '@/Types/Tech.types';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const ProductCard = ({card}:{card:IProducts}) => {
@@ -32,7 +33,9 @@ const ProductCard = ({card}:{card:IProducts}) => {
                 </div>
                 <div className='flex items-center justify-between pt-3 border-t border-slate-100 mt-auto'>
                     <span className='text-xs text-slate-500'>🏪 {card.stores.length} stores</span>
-                    <span className='text-xs font-semibold text-indigo-600 group-hover:text-indigo-700'>View Details →</span>
+                    <Link href={`/products/${card?.slug}`}>
+                        <span className='text-xs font-semibold text-indigo-600 group-hover:text-indigo-700'>View Details →</span>
+                    </Link>
                 </div>
             </div>
         </div>

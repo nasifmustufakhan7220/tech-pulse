@@ -4,12 +4,14 @@ import { Suspense } from "react";
 import DisplayTime from "./DisplayTime";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 const Header = async () => {
   const res = await fetch(
     "https://better-auth-backend-kappa.vercel.app/api/categories",
     { next: { revalidate: 60 } },
   );
+  if(!res.ok) notFound();
   const data: ICategory[] = await res.json();
   return (
     <div className="bg-base-100 shadow-sm">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductsSkeleton";
 import AllProducts from "./AllProducts";
+import { notFound } from "next/navigation";
 
 
 const PriceDown = () => {
@@ -15,7 +16,7 @@ const PriceDown = () => {
       next: { revalidate: 60 },
     })
       .then((res) => {
-        if(!res.ok) throw new Error("Data featching failed");
+        if(!res.ok) notFound();
         return res.json();
       })
       .then((data) => setPriceDown(data))

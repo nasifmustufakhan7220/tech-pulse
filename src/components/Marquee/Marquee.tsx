@@ -1,5 +1,6 @@
 
 import { IProducts } from "@/Types/Tech.types";
+import { notFound } from "next/navigation";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -8,6 +9,8 @@ const Marquee = async () => {
     "https://better-auth-backend-kappa.vercel.app/api/products",
     { cache: "force-cache" },
   );
+
+  if(!res.ok) notFound();
 
   const data: IProducts[] = await res.json();
 

@@ -1,6 +1,7 @@
 "use client";
 import { ICategory } from "@/Types/Tech.types";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CategoryNavLinks = () => {
@@ -10,7 +11,10 @@ const CategoryNavLinks = () => {
     fetch("https://better-auth-backend-kappa.vercel.app/api/categories", {
       next: { revalidate: 60 },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if(!res.ok) notFound();
+       return res.json()
+      })
       .then((data) => setNavLinks(data))
       .catch((err) => console.log(err));
   }, []);

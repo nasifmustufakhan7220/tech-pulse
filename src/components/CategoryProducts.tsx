@@ -2,16 +2,19 @@ import { ICategory, IProducts } from "@/Types/Tech.types";
 import React from "react";
 import ProductCard from "./Home/ProductCard";
 import Link from "next/link";
-const getCategoriesProduct = async (categorySlug: string) => {
+import { notFound } from "next/navigation";
+export const getCategoriesProduct = async (categorySlug: string) => {
   const res = await fetch(
     `https://better-auth-backend-kappa.vercel.app/api/products?category=${categorySlug}`,
   );
+  if(!res.ok) notFound();
   const data = await res.json();
   return data;
 };
 
-const getAllCategories = async()=>{
+export const getAllCategories = async()=>{
     const res = await fetch('https://better-auth-backend-kappa.vercel.app/api/categories');
+    if(!res.ok) notFound()
     const data = await res.json();
     return data;
 }
